@@ -1,0 +1,431 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+     
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color:#323232;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  top:30px;
+  right: 100px;
+  border: 3px solid #f1f1f1;
+  
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color:white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+     
+ 	<title>stress_detector</title>
+ 	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+ <link rel="stylesheet" href='file.css'>
+
+<script type="text/javascript">
+			function showHideDiv(ele) {
+				var srcElement = document.getElementById(ele);
+				if (srcElement != null) {
+					if (srcElement.style.display == "block") {
+						srcElement.style.display = 'none';
+					}
+					else {
+						srcElement.style.display = 'block';
+					}
+					return false;
+				}
+			}
+
+            function openForm() {
+                 document.getElementById("myForm").style.display = "block";
+                }
+
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+                 }
+
+            function check(form) {
+                if(form.uname.value=="" && form.psw.value==""){
+                      alert("Username and Password can't blank..");
+                     }
+                else if(form.uname.value=="dffdfe" && form.psw.value=="ytufsdr"){
+                         window.open("database.php");
+                     } 
+                else{
+                      alert("wrong username and password");
+                    }
+             }
+
+            function windowClose() {
+                window.open('','_parent','');
+                window.close();
+             }
+
+
+</script>
+
+ </head>
+ <body>
+
+ <div class="bg-img">
+  <div class="container">
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Peace Of Mind</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
+        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li class="dropdown">
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+         <li><button class="open-button" onclick="openForm()">Admin</button>
+        <li> <a href="javascript: windowClose()"><span class="glyphicon glyphicon-log-out"></span>
+     Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container1">
+  <h3><p style="color:#7e160b
+" >Stress Level Indicator</p></h3>
+ <p>This questionnaire will show how stress affects different parts of your life. Select the response
+which best indicates how often you experience each stress indicator during a typical week.</p>
+5- Almost Always (on five days a week)<br>
+4- Most of the time (on three days a week)<br>
+3- Some of the time ( on one and one-half days a week)<br>
+2- Almost never (less than two hours a week)<br>
+1- Never<br>
+    <b>All the fields are mandatory to filled.</b>
+</div>
+
+<!--banner-->
+<div class="form-popup" id="myForm">
+  <form method="POST" class="form-container">
+    <h1>AdminLogin</h1>
+    
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit" onclick="check(this.form)" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+
+<div class="container2">
+
+ <form action="main.php" method="POST">
+ <br><center>
+ <input type="text" name="name" pattern="[A-Za-z]+" placeholder="Name"  required>
+<hr class="new"></center>
+
+     <center><button type="button" class="button button1" value="Physical Indicator" onClick="showHideDiv('divMsg')"><b>Physical Indicator</b></button></center>
+<div id="divMsg">
+<br>1.My body feels tense all over.<br>
+    <input type="radio" value="1" name="options">1.Never &nbsp;
+    <input type="radio" value="5" name="options" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options" required>5.Always&nbsp;<br>
+
+<br>2.I get severe or chronic headaches.<br>
+    <input type="radio" value="1" name="options1" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options1" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options1" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options1" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options1" required>5.Always&nbsp;<br>
+
+<br>3.I feels nervous.<br>
+    <input type="radio" value="1" name="options2" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options2" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options2" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options2" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options2" required>5.Always&nbsp;<br>
+
+<br>4. I feel short of breath after mild exercise like climbing up four flights of stairs.<br>
+    <input type="radio" value="1" name="options3" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options3" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options3" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options3" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options3" required>5.Always&nbsp;<br>
+
+
+<br>5.I lack physical energy.<br>
+    <input type="radio" value="1" name="options4" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options4" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options4" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options4" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options4" required>5.Always&nbsp;<br>
+
+</div>
+
+     <center><button type="button" class="button button1" value="Sleep Indicator" onClick="showHideDiv('divMsg1')"><b>Sleep Indicator</b></button></center>
+		<div id="divMsg1">
+<br>1.I have trouble falling asleep.<br>
+    <input type="radio" value="1" name="options11" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options11" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options11" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options11" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options11" required>5.Always&nbsp;<br>
+
+<br>2.I take pills to get to sleep.<br>
+    <input type="radio" value="1" name="options12" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options12" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options12" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options12" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options12" required>5.Always&nbsp;<br>
+
+<br>3.I have nightmares or repeated bad dreams.<br>
+    <input type="radio" value="1" name="options13" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options13" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options13" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options13" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options13" required>5.Always&nbsp;<br>
+
+<br>4.I wake up at least once in the middle of the night for no apparent reason<br>
+
+    <input type="radio" value="1" name="options14" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options14" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options14" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options14" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options14" required>5.Always &nbsp;<br>
+
+
+<br>5.No matter how much sleep I get, I awake feeling tired.<br>
+
+    <input type="radio" value="1" name="options15" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options15" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options15" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options15" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options15" required>5.Always &nbsp;<br>
+
+
+		</div>
+
+     <center><button type="button" class="button button1" value="Emotional Indicator" onClick="showHideDiv('divMsg2')"><b>Emotional Indicator</b></button></center>
+<div id="divMsg2">
+
+<br>1.I have temper outbursts I can't control.<br>
+    <input type="radio" value="3" name="options16" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options16" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options16" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options16" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options16" required>5.Always&nbsp;<br>
+
+<br>2.My emotions change unpredictably and without any apparent reason.<br>
+    <input type="radio" value="3" name="options17" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options17" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options17" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options17" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options17" required>5.Always&nbsp;<br>
+
+<br>3.I have trouble remembering things.<br>
+    <input type="radio" value="3" name="options18" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options18" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options18" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options18" required>4.Most Time&nbsp;
+    <input type="radio" value="16" name="options18" required>5.Always&nbsp;<br>
+
+<br>4.I worry a lot.<br>
+
+    <input type="radio" value="3" name="options19" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options19" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options19" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options19" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options19" required>5.Always&nbsp;<br>
+
+
+<br>5.I feel like I really can't trust anyone.<br>
+    <input type="radio" value="3" name="options20" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options20" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options20" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options20" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options20" required>5.Always&nbsp;<br>
+
+<br>6.I feel extremely sensitive and irritable.<br>
+    <input type="radio" value="3" name="options21" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options21" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options21" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options21" required>4.Most Time&nbsp;
+    <input type="radio" value="16" name="options21" required>5.Always&nbsp;<br>
+
+        </div>
+
+
+<center><button type="button" class="button button1" value="Behavioural Indicator" onClick="showHideDiv('divMsg3')"><b>Behavioural Indicator</b></button></center>
+		<div id="divMsg3">
+<br>1.I often talk rude to people<br>
+    <input type="radio" value="3" name="options22" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options22" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options22" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options22" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options22" required>5.Always&nbsp;<br>
+
+<br>2.I have trouble meeting a boyfriend/ girlfriend..<br>
+    <input type="radio" value="3" name="options23" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options23" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options23" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options23" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options23" required>5.Always&nbsp;<br>
+
+<br>3. I go to work even when I feel sick.<br>
+    <input type="radio" value="3" name="options24" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options24" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options24" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options24" required>4.Most Time&nbsp;
+    <input type="radio" value="16" name="options24" required>5.Always&nbsp;<br>
+
+<br>4.I have no friends.<br>
+    <input type="radio" value="3" name="options25" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options25" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options25" required>3.Sometimes &nbsp;
+    <input type="radio" value="13" name="options25" required>4.Most Time &nbsp;
+    <input type="radio" value="17" name="options25" required>5.Always &nbsp;<br>
+
+
+<br>5.I always make false assumptions about others <br>
+    <input type="radio" value="3" name="options26" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options26" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options26" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options26" required>4.Most Time&nbsp;
+    <input type="radio" value="17" name="options26" required>5.Always&nbsp;<br>
+
+
+<br>6.I drink alcohol or use drugs to relax.<br>
+    <input type="radio" value="3" name="options27" required>1.Never &nbsp;
+    <input type="radio" value="7" name="options27" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options27" required>3.Sometimes&nbsp;
+    <input type="radio" value="13" name="options27" required>4.Most Time&nbsp;
+    <input type="radio" value="16" name="options27" required>5.Always &nbsp;<br>
+
+</div>
+
+     <center><button type="button" class="button button1" value="Personal Habit" onClick="showHideDiv('divMsg4')"><b>Personal Habit</b></button></center>
+<div id="divMsg4">
+<br>1. I lack time to read the daily newspaper<br>
+    <input type="radio" value="1" name="options29" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options29" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options29" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options29" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options29" required>5.Always&nbsp;<br>
+
+<br>2.I spend less than 30 minutes a day working toward a life goal or ambition of mine.<br>
+    <input type="radio" value="1" name="options30" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options30" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options30" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options30" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options30" required>5.Always&nbsp;<br>
+
+<br>3.I spend less than three hours a week working on a hobby of mine.<br>
+    <input type="radio" value="1" name="options31" >1.Never &nbsp;
+    <input type="radio" value="5" name="options31"  required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options31" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options31" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options31" required>5.Always&nbsp;<br>
+
+<br>4.I watch television for entertainment more than one hour a day.<br>
+    <input type="radio" value="1" name="options32" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options32" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options32" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options32" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options32" required>5.Always&nbsp;<br>
+
+<br>5.When I feel stressed, it is difficult for me to plan time and activities to constructively release my stress.<br>
+    <input type="radio" value="1" name="options33" required>1.Never &nbsp;
+    <input type="radio" value="5" name="options33" required>2.Almost Never &nbsp;
+    <input type="radio" value="10" name="options33" required>3.Sometimes&nbsp;
+    <input type="radio" value="15" name="options33" required>4.Most Time&nbsp;
+    <input type="radio" value="20" name="options33" required>5.Always&nbsp;<br>
+
+</div>
+        <center><button class="btn btn-success"> Submit</button></center>
+
+  </form>
+</div>
+
+  </div>
+</div>
+
+ <div class="footer">
+<!--footer -->
+ <div class="footer">
+  <p>Created by: &copy;Ak2019 <a href="mailto:ashwin88550@gmail.com">
+  ak@gmail.com</a></p>
+</div>
+</div>
+ </body>
+ </html>
+    
+
+
+
